@@ -130,7 +130,7 @@ public abstract class LoadMoreAdapter extends RecyclerView.Adapter<LoadMoreAdapt
             }
 
             if (mLoadMoreListener != null) {
-                mLoadMoreListener.onLoadMore(items.size());
+                mLoadMoreListener.onLoadMore(items.size() - 1);
             }
         }
 
