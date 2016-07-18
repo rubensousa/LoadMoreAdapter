@@ -151,7 +151,6 @@ public abstract class LoadMoreAdapter extends RecyclerView.Adapter<LoadMoreAdapt
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == VIEW_PROGRESS) {
-            //noinspection unchecked
             return new ViewHolder(LayoutInflater.from(parent.getContext())
                     .inflate(mProgressLayout, parent, false));
         }
