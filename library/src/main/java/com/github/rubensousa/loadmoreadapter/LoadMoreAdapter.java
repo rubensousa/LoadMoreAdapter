@@ -104,7 +104,9 @@ public abstract class LoadMoreAdapter extends RecyclerView.Adapter<LoadMoreAdapt
     public void setLoading(boolean loading) {
         List items = getItems();
 
-        if (!loading) {
+        // If we were loading and want to stop doing it,
+        // we must remove the null items
+        if (mLoading && !loading) {
             if (mInversed) {
                 if (items.get(0) == null) {
                     items.remove(0);
