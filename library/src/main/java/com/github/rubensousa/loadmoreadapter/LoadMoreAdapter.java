@@ -119,7 +119,7 @@ public abstract class LoadMoreAdapter extends RecyclerView.Adapter<LoadMoreAdapt
                 }
             }
 
-        } else if (!mLoading) { // If we're not already loading
+        } else if (!mLoading && loading) { // If we're not already loading but want to
 
             if (mInversed) {
                 items.add(0, null);
