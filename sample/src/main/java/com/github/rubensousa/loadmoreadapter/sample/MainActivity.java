@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements LoadMoreAdapter.O
         } else {
             mAdapter.restoreState(savedInstanceState);
             if (mAdapter.isLoading()) {
-                onLoadMore(mAdapter.getItemCount());
+                onLoadMore(mAdapter.getItemCount() - 1);
             }
         }
 
@@ -59,9 +59,8 @@ public class MainActivity extends AppCompatActivity implements LoadMoreAdapter.O
             @Override
             public void run() {
                 if (mAdapter != null) {
-                    // Call this when you've finished loading data.
-                    // Make sure to call it before adding the new data
-                    mAdapter.setLoading(false);
+                    // If loading fails, call setLoading(false) to cancel loading more
+                    // TODO add error view to retry
                     mAdapter.addData(getData(offset));
                 }
             }

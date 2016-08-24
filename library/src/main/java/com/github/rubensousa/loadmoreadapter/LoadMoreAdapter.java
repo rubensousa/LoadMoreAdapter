@@ -47,7 +47,7 @@ public abstract class LoadMoreAdapter extends RecyclerView.Adapter<LoadMoreAdapt
     private final boolean mInversed;
 
     public LoadMoreAdapter(RecyclerView recyclerView) {
-        this(recyclerView, R.layout.load, 5, false);
+        this(recyclerView, R.layout.loadmoreadapter_adapter_progress, 5, false);
     }
 
     public LoadMoreAdapter(RecyclerView recyclerView, int progressLayout) {
@@ -176,7 +176,7 @@ public abstract class LoadMoreAdapter extends RecyclerView.Adapter<LoadMoreAdapt
         return onCreateNormalViewHolder(parent, viewType);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(View itemView) {
             super(itemView);
         }

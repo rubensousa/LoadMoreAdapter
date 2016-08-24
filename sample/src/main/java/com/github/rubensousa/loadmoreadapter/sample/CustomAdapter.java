@@ -39,6 +39,8 @@ public class CustomAdapter extends LoadMoreAdapter {
 
 
     public void addData(List<String> data) {
+        // Use this here to avoid forgetting about calling this
+        setLoading(false);
         int previousSize = mData.size();
         mData.addAll(data);
         notifyItemRangeInserted(previousSize, data.size());
