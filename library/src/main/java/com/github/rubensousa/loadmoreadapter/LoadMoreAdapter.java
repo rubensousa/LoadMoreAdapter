@@ -118,7 +118,7 @@ public abstract class LoadMoreAdapter extends RecyclerView.Adapter<LoadMoreAdapt
                     notifyItemRemoved(items.size());
                 }
             }
-
+            mLoading = false;
         } else if (!mLoading && loading) { // If we're not already loading but want to
 
             if (mInversed) {
@@ -129,12 +129,14 @@ public abstract class LoadMoreAdapter extends RecyclerView.Adapter<LoadMoreAdapt
                 notifyItemInserted(items.size() - 1);
             }
 
+            mLoading = true;
+
             if (mLoadMoreListener != null) {
                 mLoadMoreListener.onLoadMore(items.size() - 1);
             }
+        } else {
+            mLoading = loading;
         }
-
-        mLoading = loading;
     }
 
     public boolean isLoadingEnabled() {
