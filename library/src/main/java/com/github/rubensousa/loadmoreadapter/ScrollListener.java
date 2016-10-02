@@ -28,8 +28,8 @@ class ScrollListener extends RecyclerView.OnScrollListener {
     private final boolean mInversed;
     private final RecyclerView.LayoutManager mLayoutManager;
 
-    public ScrollListener(boolean inversed, int threshold, OnEventListener eventListener,
-                          RecyclerView.LayoutManager layoutManager) {
+    ScrollListener(boolean inversed, int threshold, OnEventListener eventListener,
+                   RecyclerView.LayoutManager layoutManager) {
         mInversed = inversed;
         mThreshold = threshold;
         mListener = eventListener;
@@ -39,6 +39,10 @@ class ScrollListener extends RecyclerView.OnScrollListener {
     @Override
     public void onScrolled(final RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
+
+        if (mLayoutManager == null) {
+            return;
+        }
 
         int lastVisiblePosition = 0;
         int totalItems = mLayoutManager.getItemCount();
@@ -76,7 +80,7 @@ class ScrollListener extends RecyclerView.OnScrollListener {
         }
     }
 
-    public interface OnEventListener {
+    interface OnEventListener {
         void onScrollForMore();
     }
 }
