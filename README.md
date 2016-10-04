@@ -12,6 +12,6 @@ repositories{
 }
 
 dependencies {
-  compile 'com.github.rubensousa:LoadMoreAdapter:0.2.2'
+  compile 'com.github.rubensousa:LoadMoreAdapter:0.3.2'
 }
 ```
