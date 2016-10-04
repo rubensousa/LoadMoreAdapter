@@ -19,8 +19,8 @@ public class CustomAdapter extends LoadMoreAdapter {
 
     private ArrayList<String> mData = new ArrayList<>();
 
-    public CustomAdapter(RecyclerView recyclerView) {
-        super(recyclerView);
+    public CustomAdapter() {
+
     }
 
     @Override

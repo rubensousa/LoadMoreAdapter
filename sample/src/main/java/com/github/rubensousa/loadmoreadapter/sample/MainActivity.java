@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoadMoreAdapter.OnLoadMoreListener {
 
-    private CustomAdapter mAdapter;
+    CustomAdapter mAdapter;
     private RecyclerView mRecyclerView;
 
     @Override
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements LoadMoreAdapter.O
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new CustomAdapter(mRecyclerView);
+        mAdapter = new CustomAdapter();
         mAdapter.setOnLoadMoreListener(this);
 
         if (savedInstanceState == null) {
@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements LoadMoreAdapter.O
             }
         }
 
+        mAdapter.setup(mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -60,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements LoadMoreAdapter.O
             public void run() {
                 if (mAdapter != null) {
                     // If loading fails, call setLoading(false) to cancel loading more
-                    // TODO add error view to retry
                     mAdapter.addData(getData(offset));
                 }
             }

@@ -46,26 +46,23 @@ public abstract class LoadMoreAdapter extends RecyclerView.Adapter<LoadMoreAdapt
     private int mVisibleThreshold;
     private final boolean mInversed;
 
-    public LoadMoreAdapter(RecyclerView recyclerView) {
-        this(recyclerView, R.layout.loadmoreadapter_adapter_progress, 5, false);
+    public LoadMoreAdapter() {
+        this(R.layout.loadmoreadapter_adapter_progress, 5, false);
     }
 
-    public LoadMoreAdapter(RecyclerView recyclerView, int progressLayout) {
-        this(recyclerView, progressLayout, 5, false);
+    public LoadMoreAdapter(int progressLayout) {
+        this(progressLayout, 5, false);
     }
 
-    public LoadMoreAdapter(RecyclerView recyclerView, int progressLayout, int threshold) {
-        this(recyclerView, progressLayout, threshold, false);
+    public LoadMoreAdapter(int progressLayout, int threshold) {
+        this(progressLayout, threshold, false);
     }
 
-    public LoadMoreAdapter(RecyclerView recyclerView, int progressLayout,
+    public LoadMoreAdapter(int progressLayout,
                            int threshold, boolean inversed) {
         mProgressLayout = progressLayout;
         mInversed = inversed;
         mVisibleThreshold = threshold;
-        mScrollListener = new ScrollListener(mInversed, threshold,
-                this, recyclerView.getLayoutManager());
-        recyclerView.addOnScrollListener(mScrollListener);
     }
 
     public abstract List getItems();
@@ -82,6 +79,12 @@ public abstract class LoadMoreAdapter extends RecyclerView.Adapter<LoadMoreAdapt
     public void saveState(Bundle outState) {
         outState.putBoolean(STATE_LOADING, mLoading);
         outState.putBoolean(STATE_LOADING_ENABLED, mLoadingEnabled);
+    }
+
+    public void setup(RecyclerView recyclerView) {
+        mScrollListener = new ScrollListener(mInversed, mVisibleThreshold, this,
+                recyclerView.getLayoutManager());
+        recyclerView.addOnScrollListener(mScrollListener);
     }
 
     public int getVisibleThreshold() {
